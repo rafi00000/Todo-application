@@ -11,6 +11,7 @@ const ToDoForm = () => {
 
     const handleCreateTask = (data) =>{
         data.email = user?.email;
+        data.status = "todo"
         axios.post("http://localhost:5000/task", data)
         .then(res =>{
             if(res.data){

@@ -1,25 +1,23 @@
-import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Auth/AuthProvider";
 import axios from "axios";
 
 const OngoingTask = () => {
+  const [todo, setTodo] = useState([]);
   const { user } = useContext(AuthContext);
+  useEffect(() => {
+    axios.get(`http://localhost:5000/task?email=${user?.email}`)
+    .then(res => {
+      const data = res.data;
+      const filter_data = data.filter(item => item?.status === "ongoing");
+      setTodo(filter_data);
+    })
+  }, [user])
 
-  const {
-    isLoading,
-    data: todo = [],
-    refetch,
-  } = useQuery({
-    queryKey: ["todo", user?.email],
-    queryFn: async () => {
-      const res = await axios.get(
-        `http://localhost:5000/task?email=${user?.email}`
-      );
-      return res.data;
-    },
-  });
   console.log(todo);
+
+
+
   return (
     <div className="p-4 border my-5">
       <p className="text-xl text-center font-semibold">ongoing Task</p>

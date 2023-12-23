@@ -1,5 +1,6 @@
 import ToDoForm from "./ToDoForm";
 import OngoingTask from './task_parts/OngoingTask';
+import TodoTask from "./task_parts/TodoTask";
 
 const TaskPage = () => {
   return (
@@ -34,12 +35,12 @@ const TaskPage = () => {
 
       {/* task container */}
       <div className="">
-          <div>
+          <div className="">
+            <TodoTask></TodoTask>
               <OngoingTask></OngoingTask>
           </div>
 
           <div>
-              
           </div>
 
           <div>
