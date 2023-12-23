@@ -1,4 +1,5 @@
 import ToDoForm from "./ToDoForm";
+import OngoingTask from './task_parts/OngoingTask';
 
 const TaskPage = () => {
   return (
@@ -32,13 +33,13 @@ const TaskPage = () => {
       </dialog>
 
       {/* task container */}
-      <div>
+      <div className="">
           <div>
-              
+              <OngoingTask></OngoingTask>
           </div>
 
           <div>
-
+              
           </div>
 
           <div>

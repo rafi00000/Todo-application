@@ -3,8 +3,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Auth/AuthProvider";
 import axios from "axios";
 
-const OngoingTask = () => {
-  const { user } = useContext(AuthContext);
+const TodoTask = () => {
+
+    const { user } = useContext(AuthContext);
 
   const {
     isLoading,
@@ -14,7 +15,7 @@ const OngoingTask = () => {
     queryKey: ["todo", user?.email],
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/task?email=${user?.email}`
+        `http://localhost:5000/task?email=${user?.email}&st=todo`
       );
       return res.data;
     },
@@ -49,4 +50,4 @@ const OngoingTask = () => {
   );
 };
 
-export default OngoingTask;
+export default TodoTask;
