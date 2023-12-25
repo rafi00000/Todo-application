@@ -1,6 +1,7 @@
 import ToDoForm from "./ToDoForm";
-import OngoingTask from './task_parts/OngoingTask';
+import OngoingTask from "./task_parts/OngoingTask";
 import TodoTask from "./task_parts/TodoTask";
+import Completed from "./task_parts/Completed";
 
 const TaskPage = () => {
   return (
@@ -35,17 +36,18 @@ const TaskPage = () => {
 
       {/* task container */}
       <div className="">
-          <div className="">
+        <div className="md:flex gap-4">
+          <div className="w-full">
             <TodoTask></TodoTask>
-              <OngoingTask></OngoingTask>
           </div>
-
-          <div>
+          <div className="w-full">
+            <OngoingTask></OngoingTask>
           </div>
+        </div>
 
-          <div>
-
-          </div>
+        <div>
+          <Completed></Completed>
+        </div>
       </div>
     </div>
   );

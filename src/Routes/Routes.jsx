@@ -6,6 +6,7 @@ import RegisterPage from "../Page/AuthPages/RegisterPage";
 import Dashboard from "../Layout/Dashboard";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import TaskPage from "../Page/Dashboard/TaskPage";
+import UpdateTask from "../Page/Dashboard/UpdateTask";
 
 const Routes = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const Routes = createBrowserRouter([
             {
               path: '/dashboard',
               element: <TaskPage></TaskPage>  
+            },
+            {
+                path: "/dashboard/update/:id",
+                element: <UpdateTask></UpdateTask>
             }
         ]
     }

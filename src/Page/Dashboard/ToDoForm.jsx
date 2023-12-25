@@ -19,6 +19,8 @@ const ToDoForm = () => {
                 reset();
                 const close_btn = document.getElementById("close-btn");
                 close_btn.click();
+                const refetch_todo = document.getElementById("refetch-todo");
+                refetch_todo.click();
             }
         })
         .catch(err =>{

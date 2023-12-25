@@ -12,8 +12,8 @@ const Navbar = () => {
       {/* menu */}
       <div className="flex gap-5">
         <NavLink to="/" className={({ isActive }) => isActive ? "text-violet-700 font-bold underline rounded-md" : "text-black"}>Home</NavLink>
-        <NavLink to="/" className={({ isActive }) => isActive ? "text-violet-700 font-bold underline rounded-md" : "text-black"}>kichu</NavLink>
-        <NavLink to="/" className={({ isActive }) => isActive ? "text-violet-700 font-bold underline rounded-md" : "text-black"}>kichu</NavLink>
+        <NavLink to="/" className={({ isActive }) => isActive ? "text-violet-700 font-bold underline rounded-md" : "text-black"}>About</NavLink>
+        <NavLink to="/" className={({ isActive }) => isActive ? "text-violet-700 font-bold underline rounded-md" : "text-black"}>Contacts</NavLink>
         <NavLink to="/login" className={({ isActive }) => isActive ? "text-violet-700 font-bold underline rounded-md" : "text-black"}>Login</NavLink>
       </div>
     </div>

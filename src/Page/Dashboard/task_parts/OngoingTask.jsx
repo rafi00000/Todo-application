@@ -1,26 +1,39 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../Auth/AuthProvider";
+import { FaArrowAltCircleRight, FaPen, FaRegTrashAlt } from "react-icons/fa";
+import useTodo from "../../../hooks/useTodo";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const OngoingTask = () => {
-  const [todo, setTodo] = useState([]);
-  const { user } = useContext(AuthContext);
-  useEffect(() => {
-    axios.get(`http://localhost:5000/task?email=${user?.email}`)
+  const [ongoing, refetch] = useTodo("ongoing")
+
+  const handleNext = (id) =>{
+    axios.patch(`http://localhost:5000/task/${id}`, {status: "complete"})
     .then(res => {
-      const data = res.data;
-      const filter_data = data.filter(item => item?.status === "ongoing");
-      setTodo(filter_data);
+        console.log(res.data);
+        if (res.data.modifiedCount) {
+            toast.success("Task Completed");
+            refetch();
+        }
     })
-  }, [user])
-
-  console.log(todo);
-
-
+    .catch(error => {
+        console.error(error);
+    });
+  }
+  
+  const handleDelete = (id) =>{
+    console.log(id);
+    axios.delete(`http://localhost:5000/task/${id}`)
+    .then(res =>{
+      if(res.data){
+        toast.success("Deleted Successfully");
+        refetch();
+      }
+    })
+  };
 
   return (
     <div className="p-4 border my-5">
-      <p className="text-xl text-center font-semibold">ongoing Task</p>
+      <p className="text-xl text-center font-semibold">Ongoing Task</p>
       <table className="table">
         {/* head */}
         <thead>
@@ -29,16 +42,21 @@ const OngoingTask = () => {
             <th>Job</th>
             <th>Favorite Color</th>
             <th>Priority</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {/* row 1 */}
-          {todo.map((item) => (
-            <tr key={item._id} className="bg-base-200">
+          {ongoing?.map((item) => (
+            <tr key={item._id} className="bg-blue-200">
               <td>{item?.title}</td>
               <td>{item?.description.slice(0, 15)}...</td>
               <td>{item?.deadline}</td>
               <td>{item?.priority}</td>
+              <td className="flex gap-2">
+                <button className="cursor-pointer p-4 bg-red-500 rounded-md"><FaRegTrashAlt className="text-white" onClick={() =>handleDelete(item._id)} /></button>
+                <button className="cursor-pointer p-4 bg-green-500 rounded-md" onClick={() =>handleNext(item._id)}><FaArrowAltCircleRight className="text-white" /></button>
+              </td>
             </tr>
           ))}
         </tbody>
