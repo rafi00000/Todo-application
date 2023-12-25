@@ -25,6 +25,9 @@ const RegisterPage = () => {
                 })
             }
         })
+        .catch(err =>{
+            toast.error(err.message);
+        })
     }
 
     return (
@@ -40,10 +43,10 @@ const RegisterPage = () => {
         </div>
         <div className="form-control">
             <label>Password</label>
-            <input type="text" className="input input-bordered" name="password" />
+            <input type="password" className="input input-bordered" name="password" />
         </div>
         <div>
-            <p className="text-center"><button className="btn btn-outline">Login</button></p>
+            <p className="text-center"><button className="btn btn-outline">Register</button></p>
         </div>
         <p className="text-center">Already have an account? <Link to={'/login'} className="text-purple-700 font-bold">Login</Link></p>
     </form>

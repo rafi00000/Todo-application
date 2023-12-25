@@ -7,6 +7,8 @@ const DashBoardNav = () => {
 
     const {logOut} = useContext(AuthContext);
     const navigate = useNavigate();
+    const {user} = useContext(AuthContext);
+    console.log(user);
 
     const handleLogOut = () =>{
         logOut()
@@ -49,15 +51,19 @@ const DashBoardNav = () => {
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 rounded-full">
-              <img alt="Tailwind CSS Navbar component" src="" />
+              <img src={user?.photoURL} alt="" />
             </div>
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-"
           >
-            <li onClick={handleLogOut}>
-              <a>Logout</a>
+            <p className="text-center font-bold">{user?.displayName}</p>
+            <li className="text-center">
+              {user?.email}
+            </li>
+            <li onClick={handleLogOut} className="text-center">
+              <p className="text-center">Logout</p>
             </li>
           </ul>
         </div>

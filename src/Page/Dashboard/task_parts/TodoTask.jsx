@@ -57,7 +57,7 @@ const TodoTask = () => {
               <td>{item?.priority}</td>
               <td className="flex gap-2">
                 <Link to={`/dashboard/update/${item?._id}`}><button className="cursor-pointer p-4 bg-blue-500 rounded-md"><FaPen className="text-white" /></button></Link>
-                <button className="cursor-pointer p-4 bg-red-500 rounded-md"><FaRegTrashAlt className="text-white" onClick={() =>handleDelete(item._id)} /></button>
+                <button className="cursor-pointer p-4 bg-red-500 rounded-md" onClick={() =>handleDelete(item._id)}><FaRegTrashAlt className="text-white" /></button>
                 <button className="cursor-pointer p-4 bg-green-500 rounded-md" onClick={() =>handleNext(item._id)}><FaArrowAltCircleRight className="text-white" /></button>
               </td>
             </tr>
